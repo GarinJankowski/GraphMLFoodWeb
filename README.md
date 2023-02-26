@@ -18,7 +18,11 @@ Many types of graph machine learning can be applied to this. It seems that most 
 
 The dataset is an already constructed food web of some of the kelp forest areas in the Santa Barbara Channel in California. There are 1098 nodes and 21,956 edges recorded between these nodes. The nodes, kept in one file, consist of numerous features, 45 in total. Notable features include stage of life, symbiont vs. free living, geographical range, and taxonomic rankings like order, family, genus, and species. Edges, kept in another file, consist of the node ID and name of the consumer, the node ID and name of the resource, and the type of consumer interaction like predation or parasitoid. There are also some other edge features like confidence and a justification/source of data for the relationship.
 
+![alt text](https://github.com/GarinJankowski/GraphMLFoodWeb/blob/main/images/Picture1.png)
+
 There are several other files included in this dataset, most of which are specifics regarding certain types of organisms, like location and behavior data on zooplankton and small gastropods. Lastly, there is a file Column_Descriptors.csv that describes all the features of each file. These extra files were not considered in the experiment. Below are species counts of the recorded organisms and whether they are free living or parasitic.
+
+![alt text](https://github.com/GarinJankowski/GraphMLFoodWeb/blob/main/images/Picture2.png)
 
 ## Methods	                          
 
@@ -30,11 +34,16 @@ The second network was a simple feed forward network for classifying whether an 
 
 The training/validation/testing was split 70/10/20. For each batch, positive samples, which were edges that exist in the graph, were evaluated and trained on. Next, the same amount of negative samples was created by generating edges that did not exist in the graph. The positive and negative predictions were recorded separately, with the loss being the negative mean log of the positive predictions minus the mean log of one minus the negative predictions.
 
-$$ L= -mean(log(y_p)) - mean(log(1 - y_n))$$
+$$ L= -mean(log(y_p)) - mean(log(1 - y_n)) $$
 
 ## Results
 
 The model performed okay at predicting the existence of an edge between two nodes. With the higher recall, it seemed better at predicting that an edge exists than predicting that one doesn’t. There is a potential domain reason for this, which is that the supplied graph data is by no means perfect and that not every single relationship has been observed and recorded. This could even mean that the model is predicting relationships that do exist but were not recorded in the graph, which is the primary application of this model. However, one cannot be sure without perfect data, which we do not have.
+
+![alt text](https://github.com/GarinJankowski/GraphMLFoodWeb/blob/main/images/Picture3.png)
+
+![alt text](https://github.com/GarinJankowski/GraphMLFoodWeb/blob/main/images/Picture4.png)
+
 
 ## Conclusions
 
